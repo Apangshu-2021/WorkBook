@@ -8,6 +8,7 @@ import Alert from './components/Alert'
 import Signup from './components/Signup'
 import Login from './components/Login'
 import { useState } from 'react'
+import Footer from './components/Footer'
 
 function App() {
   const [alert, setAlert] = useState(null)
@@ -31,11 +32,7 @@ function App() {
           <div className='container'>
             <Routes>
               <Route exact path='/' element={<Home showAlert={showAlert} />} />
-              <Route
-                exact
-                path='/about'
-                element={<About showAlert={showAlert} />}
-              />
+              <Route exact path='/about' element={<About />} />
               <Route
                 exact
                 path='/login'
@@ -48,6 +45,7 @@ function App() {
               />
             </Routes>
           </div>
+          <Footer />
         </Router>
       </NoteState>
     </>

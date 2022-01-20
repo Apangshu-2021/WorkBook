@@ -15,10 +15,10 @@ const Navbar = (props) => {
       <div className='container-fluid'>
         <Link
           className='navbar-brand '
-          style={{ 'pointer-events': 'none' }}
+          style={{ pointerEvents: 'none' }}
           to='/'
         >
-          iNotebook
+          WorkBook
         </Link>
         <button
           className='navbar-toggler'

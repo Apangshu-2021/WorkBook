@@ -2,8 +2,8 @@ import Notes from './Notes'
 
 export const Home = (props) => {
   return (
-    <div>
+    <main>
       <Notes showAlert={props.showAlert} />
-    </div>
+    </main>
   )
 }

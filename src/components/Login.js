@@ -34,42 +34,50 @@ const Login = (props) => {
   }
 
   return (
-    <div className='container mt-3'>
-      <h2>Login to continue to iNotebook</h2>
-      <form onSubmit={handleSubmit}>
-        <div className='mb-3'>
-          <label htmlFor='email' className='form-label'>
-            Email address
-          </label>
-          <input
-            type='email'
-            className='form-control'
-            value={credentials.email}
-            onChange={onChange}
-            id='email'
-            name='email'
-            aria-describedby='emailHelp'
-          />
-        </div>
-        <div className='mb-3'>
-          <label htmlFor='password' className='form-label'>
-            Password
-          </label>
-          <input
-            type='password'
-            className='form-control'
-            value={credentials.password}
-            onChange={onChange}
-            name='password'
-            id='password'
-          />
-        </div>
+    <main>
+      <div className='container mt-5'>
+        <div className='row d-flex justify-content-center'>
+          <div className='col-md-6'>
+            <h2>Login to continue to WorkBook</h2>
+            <form onSubmit={handleSubmit}>
+              <div className='mb-3'>
+                <label htmlFor='email' className='form-label'>
+                  Email address
+                </label>
+                <input
+                  type='email'
+                  className='form-control'
+                  value={credentials.email}
+                  onChange={onChange}
+                  id='email'
+                  name='email'
+                  aria-describedby='emailHelp'
+                  required
+                />
+              </div>
+              <div className='mb-3'>
+                <label htmlFor='password' className='form-label'>
+                  Password
+                </label>
+                <input
+                  type='password'
+                  className='form-control'
+                  value={credentials.password}
+                  onChange={onChange}
+                  name='password'
+                  id='password'
+                  required
+                />
+              </div>
 
-        <button type='submit' className='btn btn-primary'>
-          Submit
-        </button>
-      </form>
-    </div>
+              <button type='submit' className='btn btn-primary'>
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
   )
 }
 

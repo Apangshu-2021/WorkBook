@@ -11,3 +11,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+main {
+  min-height: 77.5vh;
+}
+
+.footer {
+  color: whitesmoke;
+  background-color: black;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
+}
+@media (max-width: 400px) {
+  .footer {
+    font-size: 0.6rem;
+    text-align: center;
+  }
+}
+
+#about_title {
+  text-align: center;
+}

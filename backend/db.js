@@ -1,12 +1,14 @@
 const mongoose = require('mongoose')
 
-const mongoURI =
-  'mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false'
+const connectToMongo = async () => {
+  try {
+    const conn = await mongoose.connect(process.env.MONGO_URI)
 
-const connectToMongo = () => {
-  mongoose.connect(mongoURI, () => {
-    console.log('Connected to Mongo Successfully')
-  })
+    console.log(`MongoDB Connected: ${conn.connection.host}`)
+  } catch (error) {
+    console.error(`Error:${error.messsage}`)
+    process.exit(1)
+  }
 }
 
 module.exports = connectToMongo

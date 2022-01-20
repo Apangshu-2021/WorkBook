@@ -18,65 +18,77 @@ const AddNote = (props) => {
     setNote({ ...note, [e.target.name]: e.target.value })
   }
   return (
-    <div className='container my-3'>
-      <h2>Add a Note</h2>
-      <form className='my-3'>
-        <div className='mb-3'>
-          <label htmlFor='title' className='form-label'>
-            Title
-          </label>
-          <input
-            type='text'
-            className='form-control'
-            id='title'
-            name='title'
-            aria-describedby='emailHelp'
-            value={note.title}
-            onChange={onChange}
-            minLength={3}
-            required
-          />
-        </div>
-        <div className='mb-3'>
-          <label htmlFor='description' className='form-label'>
-            Description
-          </label>
-          <input
-            type='text'
-            className='form-control'
-            id='description'
-            name='description'
-            value={note.description}
-            onChange={onChange}
-            minLength={5}
-            required
-          />
-        </div>
-        <div className='mb-3'>
-          <label htmlFor='tag' className='form-label'>
-            Tag
-          </label>
-          <input
-            type='text'
-            className='form-control'
-            id='tag'
-            name='tag'
-            value={note.tag}
-            onChange={onChange}
-            minLength={5}
-            required
-          />
-        </div>
+    <div className='container mt-3'>
+      <div className='row d-flex justify-content-center'>
+        <div className='col-md-6'>
+          <h2>Add a Note</h2>
+          <form className='my-3'>
+            <div className='mb-3'>
+              <label htmlFor='title' className='form-label'>
+                Title
+              </label>
+              <input
+                type='text'
+                className='form-control'
+                id='title'
+                name='title'
+                aria-describedby='emailHelp'
+                value={note.title}
+                onChange={onChange}
+                minLength={3}
+                required
+                placeholder='Title must be atleast 3 characters'
+              />
+            </div>
+            <div className='mb-3'>
+              <label htmlFor='description' className='form-label'>
+                Description
+              </label>
+              <textarea
+                type='text'
+                rows={6}
+                className='form-control'
+                id='description'
+                name='description'
+                value={note.description}
+                onChange={onChange}
+                minLength={5}
+                required
+                placeholder='Description must be atleast 5 characters'
+              />
+            </div>
+            <div className='mb-3'>
+              <label htmlFor='tag' className='form-label'>
+                Tag
+              </label>
+              <input
+                type='text'
+                className='form-control'
+                id='tag'
+                name='tag'
+                value={note.tag}
+                onChange={onChange}
+                minLength={3}
+                required
+                placeholder='Tag must be atleast 3 characters'
+              />
+            </div>
 
-        <button
-          disabled={note.title.length < 3 || note.description.length < 5}
-          type='submit'
-          className='btn btn-primary'
-          onClick={handleClick}
-        >
-          Add Note
-        </button>
-      </form>
+            <button
+              disabled={
+                note.title.length < 3 ||
+                note.description.length < 5 ||
+                note.tag.length < 3
+              }
+              type='submit'
+              className='btn btn-primary'
+              onClick={handleClick}
+            >
+              Add Note
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   )
 }

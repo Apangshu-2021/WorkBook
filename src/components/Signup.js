@@ -13,7 +13,7 @@ const Signup = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (credentials.password !== credentials.cpassword) {
-      props.showAlert('Password and Confirm Password does not match', 'danget')
+      props.showAlert('Password and Confirm Password does not match', 'danger')
     } else {
       const response = await fetch(
         'http://localhost:5000/api/auth/createuser',
@@ -46,78 +46,80 @@ const Signup = (props) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
   }
   return (
-    <div className='container mt-3'>
-      <h2>Create an account to use iNotebook</h2>
-      <form onSubmit={handleSubmit}>
-        <div className='mb-3'>
-          <label htmlFor='name' className='form-label'>
-            Name
-          </label>
-          <input
-            type='text'
-            className='form-control'
-            id='name'
-            onChange={onChange}
-            name='name'
-            value={credentials.name}
-            minLength={3}
-          />
+    <main>
+      <div className='container mt-5'>
+        <div className='row d-flex justify-content-center'>
+          <div className='col-md-6'>
+            <h2>Create an account to use WorkBook</h2>
+            <form onSubmit={handleSubmit}>
+              <div className='mb-3'>
+                <label htmlFor='name' className='form-label'>
+                  Name
+                </label>
+                <input
+                  type='text'
+                  className='form-control'
+                  id='name'
+                  onChange={onChange}
+                  name='name'
+                  value={credentials.name}
+                  minLength={3}
+                  required
+                />
+              </div>
+              <div className='mb-3'>
+                <label htmlFor='email' className='form-label'>
+                  Email address
+                </label>
+                <input
+                  type='email'
+                  className='form-control'
+                  id='email'
+                  aria-describedby='emailHelp'
+                  onChange={onChange}
+                  name='email'
+                  value={credentials.email}
+                  required
+                />
+              </div>
+              <div className='mb-3'>
+                <label htmlFor='password' className='form-label'>
+                  Password
+                </label>
+                <input
+                  type='password'
+                  className='form-control'
+                  id='password'
+                  onChange={onChange}
+                  name='password'
+                  value={credentials.password}
+                  minLength={5}
+                  required
+                />
+              </div>
+              <div className='mb-3'>
+                <label htmlFor='cpassword' className='form-label'>
+                  Confirm Password
+                </label>
+                <input
+                  type='password'
+                  className='form-control'
+                  id='cpassword'
+                  onChange={onChange}
+                  name='cpassword'
+                  value={credentials.cpassword}
+                  minLength={5}
+                  required
+                />
+              </div>
+              <button type='submit' className='btn btn-primary'>
+                Submit
+              </button>
+            </form>
+          </div>
         </div>
-        <div className='mb-3'>
-          <label htmlFor='email' className='form-label'>
-            Email address
-          </label>
-          <input
-            type='email'
-            className='form-control'
-            id='email'
-            aria-describedby='emailHelp'
-            onChange={onChange}
-            name='email'
-            value={credentials.email}
-          />
-        </div>
-        <div className='mb-3'>
-          <label htmlFor='password' className='form-label'>
-            Password
-          </label>
-          <input
-            type='password'
-            className='form-control'
-            id='password'
-            onChange={onChange}
-            name='password'
-            value={credentials.password}
-            minLength={5}
-          />
-        </div>
-        <div className='mb-3'>
-          <label htmlFor='cpassword' className='form-label'>
-            Confirm Password
-          </label>
-          <input
-            type='password'
-            className='form-control'
-            id='cpassword'
-            onChange={onChange}
-            name='cpassword'
-            value={credentials.cpassword}
-            minLength={5}
-          />
-        </div>
-        <button
-          type='submit'
-          disabled={
-            credentials.name.length < 3 ||
-            credentials.password.length < 5 ||
-            credentials.cpassword.length < 5
-          }
-          className='btn btn-primary'
-        >
-          Submit
-        </button>
-      </form>
-    </div>
+      </div>
+    </main>
   )
 }
 

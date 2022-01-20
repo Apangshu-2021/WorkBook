@@ -12,7 +12,6 @@ const Notes = (props) => {
     if (localStorage.getItem('token')) {
       getNotes()
     } else {
-      props.showAlert('Login/SignUp to access the Home page', 'danger')
       navigate('/login')
     }
     // eslint-disable-next-line
@@ -92,16 +91,18 @@ const Notes = (props) => {
                     value={note.etitle}
                     aria-describedby='emailHelp'
                     onChange={onChange}
-                    minLength={5}
+                    minLength={3}
                     required
+                    placeholder='Title must be atleast 3 characters'
                   />
                 </div>
                 <div className='mb-3'>
                   <label htmlFor='description' className='form-label'>
                     Description
                   </label>
-                  <input
+                  <textarea
                     type='text'
+                    rows={4}
                     className='form-control'
                     id='edescription'
                     name='edescription'
@@ -109,6 +110,7 @@ const Notes = (props) => {
                     onChange={onChange}
                     minLength={5}
                     required
+                    placeholder='Description must be atleast 5 characters'
                   />
                 </div>
                 <div className='mb-3'>
@@ -122,6 +124,9 @@ const Notes = (props) => {
                     name='etag'
                     value={note.etag}
                     onChange={onChange}
+                    minLength={3}
+                    required
+                    placeholder='Tag must be atleast 3 characters'
                   />
                 </div>
               </form>
@@ -137,7 +142,9 @@ const Notes = (props) => {
               </button>
               <button
                 disabled={
-                  note.etitle.length < 3 || note.edescription.length < 5
+                  note.etitle.length < 3 ||
+                  note.edescription.length < 5 ||
+                  note.etag.length < 3
                 }
                 onClick={handleClick}
                 type='button'
