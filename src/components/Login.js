@@ -2,12 +2,16 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Login = (props) => {
+  const host =
+    process.env.NODE_ENV === 'production'
+      ? 'https://workbook123.herokuapp.com'
+      : 'http://localhost:5000'
   const [credentials, setCredentials] = useState({ email: '', password: '' })
   let navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const response = await fetch('http://localhost:5000/api/auth/login', {
+    const response = await fetch(`${host}/api/auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

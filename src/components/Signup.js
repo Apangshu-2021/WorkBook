@@ -2,6 +2,10 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Signup = (props) => {
+  const host =
+    process.env.NODE_ENV === 'production'
+      ? 'https://workbook123.herokuapp.com'
+      : 'http://localhost:5000'
   const [credentials, setCredentials] = useState({
     name: '',
     email: '',
@@ -15,20 +19,17 @@ const Signup = (props) => {
     if (credentials.password !== credentials.cpassword) {
       props.showAlert('Password and Confirm Password does not match', 'danger')
     } else {
-      const response = await fetch(
-        'http://localhost:5000/api/auth/createuser',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            name: credentials.name,
-            email: credentials.email,
-            password: credentials.password,
-          }),
-        }
-      )
+      const response = await fetch(`${host}/api/auth/createuser`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: credentials.name,
+          email: credentials.email,
+          password: credentials.password,
+        }),
+      })
       const json = await response.json()
       //  console.log(json)
       if (json.success) {
