@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs')
 var jwt = require('jsonwebtoken')
 var fetchuser = require('../middleware/fetchuser')
 
-const JWT_SECRET = 'Harryisagoodb$oy'
+const JWT_SECRET = process.env.JWT_SECRET
 
 // ROUTE 1: Create a User using: POST "/api/auth/createuser". No login required
 router.post(
@@ -29,12 +29,10 @@ router.post(
       // Check whether the user with this email exists already
       let user = await User.findOne({ email: req.body.email })
       if (user) {
-        return res
-          .status(400)
-          .json({
-            success,
-            error: 'Sorry a user with this email already exists',
-          })
+        return res.status(400).json({
+          success,
+          error: 'Sorry a user with this email already exists',
+        })
       }
       const salt = await bcrypt.genSalt(10)
       const secPass = await bcrypt.hash(req.body.password, salt)
@@ -81,12 +79,10 @@ router.post(
       let user = await User.findOne({ email })
       if (!user) {
         success = false
-        return res
-          .status(400)
-          .json({
-            success,
-            error: 'Please try to login with correct credentials',
-          })
+        return res.status(400).json({
+          success,
+          error: 'Please try to login with correct credentials',
+        })
       }
 
       const passwordCompare = await bcrypt.compare(password, user.password)
