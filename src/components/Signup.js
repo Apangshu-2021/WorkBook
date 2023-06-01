@@ -2,10 +2,13 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Signup = (props) => {
-  const host =
-    process.env.NODE_ENV === 'production'
-      ? 'https://workbook123.herokuapp.com'
-      : 'http://localhost:5000'
+  // const host =
+  //   process.env.NODE_ENV === 'production'
+  //     ? 'https://workbook123.herokuapp.com'
+  //     : 'http://localhost:5000'
+
+  const host = 'http://localhost:5000'
+
   const [credentials, setCredentials] = useState({
     name: '',
     email: '',
